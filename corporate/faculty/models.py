@@ -6,14 +6,18 @@ from django.contrib.auth.models import AbstractUser
 
 # TODO : Add absolute_urls
 
+
 class CustomUser(AbstractUser):
     email = models.EmailField(unique=True)
+
 
 class School(models.Model):
     school_code_validator = RegexValidator(
         regex="^[A-Z]{3,10}$", message="Not a valid School Code"
     )
-    school_code = models.CharField(verbose_name="School Code", max_length=10, validators=[school_code_validator])
+    school_code = models.CharField(
+        verbose_name="School Code", max_length=10, validators=[school_code_validator]
+    )
     school_name = models.CharField(verbose_name="School Name", max_length=80)
 
     class Meta:
@@ -28,7 +32,9 @@ class Faculty(models.Model):
     phone_number_regex = RegexValidator(
         regex="^[1-9][0-9]{9}$", message="Not a valid phone number",
     )
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name="users", on_delete=models.CASCADE)
+    user = models.OneToOneField(
+        settings.AUTH_USER_MODEL, related_name="users", on_delete=models.CASCADE
+    )
     phone = models.BigIntegerField(
         verbose_name="Phone number", validators=[phone_number_regex], unique=True
     )

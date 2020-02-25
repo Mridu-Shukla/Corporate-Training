@@ -1,0 +1,37 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIT Corporate Training</title>
+    <link rel="stylesheet" href={% static 'faculty/css/login.css'%}>
+</head>
+<body>
+    <div class="container">
+        <div class="holder">
+            <img class="logo" src={% static 'faculty/vit.png'%} alt="VIT"/>
+            <form class="loginform" method="POST">
+                {% csrf_token %}
+                <h2 class="formhead">Login</h2>
+                {% if messages %}
+                {% for message in messages %}
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                    <h5 class="error success">{{message}}</h5>
+                {% else %}
+                    <h5 class="error">{{message}}</h5>
+                {% endif %}
+                {% endfor %}
+                {% endif %}
+                {% if form.errors %}
+                    <h5 class="error">{{form.errors}}</h5>
+                {% endif%}
+                <label class="label" for="username">Username</label>
+                <input placeholder="Enter your username" required id="username" class="inp" type="text" name="username" value={{form.cleaned_data.username}}>
+                <label class="label" for="password">Password</label>
+                <input required placeholder="Enter your password" id="password" class="inp" type="password" name="password" minlength=8 required value={{form.cleaned_data.password}}>
+                <input type="submit" value="Submit" class="form-submit">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

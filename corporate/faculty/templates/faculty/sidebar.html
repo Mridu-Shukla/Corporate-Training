@@ -1,0 +1,64 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIT Corporate Training</title>
+    <link rel="stylesheet" href={% static 'faculty/css/sidebar.css' %}>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    {% block addcss %}
+    {% endblock %}
+</head>
+<body>
+
+    <div class="container">
+        <div class="topnav">
+            <a href={% url 'faculty:dashboard'%} class="active">Vellore Institute of Technology</a>
+            <div id="myLinks">
+               <a href={% url 'faculty:dashboard'%}>Dashboard</a>
+                <a href="">Ongoing Trainings</a>
+                <a href="">Current Faculties</a>
+                <a href="">Add Training</a>
+                <a href="">Add Faculty</a>
+                <a href="">Add Topics</a>
+                <a href={% url 'faculty:logout'%}>Logout</a>
+            </div>
+            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                <i class="fa fa-bars"></i>
+            </a>
+        </div>
+        <div class="sidebar">
+            <ul class="sidebarlink">
+                <a href={% url 'faculty:dashboard'%}><img class="logo" src={% static 'faculty/vit_white.png'%} alt="VIT"/></a>
+                <a href={% url 'faculty:dashboard'%}><li class="links">Dashboard</li></a>
+                <a href=""><li class="links">Ongoing Trainings</li></a>
+                <a href=""><li class="links">Current Faculties</li></a>
+                <a href={% url 'faculty:add_training'%}><li class="links">Add Training</li></a>
+                <a href=""><li class="links">Add Faculty</li></a>
+                <a href=""><li class="links">Add Topics</li></a>
+                <a href=""><li class="links">Modify Details</li></a>
+                <a href={% url 'faculty:logout'%}><li class="links">Logout</li></a>
+            </ul>
+        </div>
+        <div class="content">
+            <div class="heading">
+                <h1>Corporate Training</h1>
+            </div>
+            <div class="inheritcontent">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+<script>
+function myFunction() {
+  var x = document.getElementById("myLinks");
+  if (x.style.display === "block") {
+    x.style.display = "none";
+  } else {
+    x.style.display = "block";
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+{% extends 'faculty/sidebar.html' %}
+{% load static %}
+{% block addcss %}
+    <link rel="stylesheet" href={% static 'faculty/css/dashboard.css' %}>
+{% endblock %}
+{% block content %}
+<div class="dashboard-content">
+    <div class="trainings">
+        <h1 class="dbheading">Ongoing Trainings</h1>
+        {% comment %} <div class="facultyinfo">
+            <img class="dblogo" src={% static 'faculty/poster.jpg'%}/>
+        </div>
+        <div class="facultyinfo">
+            <img class="dblogo" src={% static 'faculty/poster.jpg'%}/>
+        </div> {% endcomment %}
+        {% for training in training_list %}
+            <div class="facultyinfo">
+                <img class="dblogo profile" src={{training.training_image.url}} alt={{training.topic}}/>
+                <p class="middle">{{training.title }}</p>
+            </div>
+        {% endfor %}
+            <button class="loadmore" ype="button">View More</button>
+    </div>
+    <div class="faculties">
+        <h1 class="dbheading">Enrolled Faculties</h1>
+        {% for faculty in faculty_list %}
+            <div class="facultyinfo">
+                <img class="dblogo profile" src={{faculty.profile_photo.url}} alt={{faculty.user.username}}/>
+                <p class="middle">{{faculty.user.get_full_name }}</p>
+            </div>
+        {% endfor %}
+            <button class="loadmore" type="button">View More</button>
+    </div>
+</div>
+{% endblock %}

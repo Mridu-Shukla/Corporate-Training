@@ -2,8 +2,10 @@ from django.db import models
 from faculty.models import Faculty
 from .constants import ImageConstant
 from django.core.validators import RegexValidator
+from django.urls import reverse  # new
 
 # TODO : Add absolute_urls
+
 
 class Topic(models.Model):
     title = models.CharField(verbose_name="Title of topic", max_length=50)
@@ -26,7 +28,8 @@ class Training(models.Model):
     training_image = models.ImageField(
         upload_to="images/training/",
         help_text="Training Poster",
-        default=ImageConstant.defaultImage.value,
+        blank=False,
+        null=False,
     )
     topic = models.ForeignKey(
         Topic,
@@ -55,6 +58,10 @@ class Training(models.Model):
 
     def getAllComments(self):
         return Training.comments.all()
+
+    # def get_absolute_url(self):
+    #     return reverse('training_detail', args=[str(self.id)])
+
 
 class Comment(models.Model):
     training = models.ForeignKey(

@@ -109,7 +109,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-LOGIN_URL = "/login"
+LOGIN_URL = "faculty:login"
 
 
 # Static files (CSS, JavaScript, Images)
