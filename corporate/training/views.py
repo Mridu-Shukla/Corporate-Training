@@ -28,12 +28,14 @@ class AddTrainingView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
         context["faculty_list"] = Faculty.objects.all()
         return context
 
+
 class AddTopicView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Topic
     form_class = TopicForm
     template_name = "faculty/add_topic.html"
     success_url = reverse_lazy("faculty:dashboard")
     success_message = "%(title)s was created successfully"
+
 
 class TopicList(APIView):
     serializer = TopicSerializer
@@ -46,6 +48,7 @@ class TopicList(APIView):
         task_serializer = self.serializer(tasks, many=True)
         # Return the JSON Representation
         return Response(task_serializer.data)
+
 
 class TrainingList(APIView):
     serializer = TrainingSerializer

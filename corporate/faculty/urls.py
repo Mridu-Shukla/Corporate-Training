@@ -1,6 +1,15 @@
 from django.urls import path
 
-from .views import LoginView, LogoutView, DashboardView, AddFacultyView, AddSchoolView, FacultyList, apiRoot, SchoolList
+from .views import (
+    LoginView,
+    LogoutView,
+    DashboardView,
+    AddFacultyView,
+    AddSchoolView,
+    FacultyList,
+    apiRoot,
+    SchoolList,
+)
 from training.views import AddTrainingView, AddTopicView, TrainingList, TopicList
 
 app_name = "faculty"

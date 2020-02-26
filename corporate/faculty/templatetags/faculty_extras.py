@@ -12,6 +12,7 @@ def getErrorOnly(value):
     end_index = temp.find(end_string)
     return temp[start_index:end_index]
 
+
 @register.filter(is_safe=True, name="someWords")
 def getSomeWords(value):
     if len(str(value)) < 80:

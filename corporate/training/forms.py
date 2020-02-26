@@ -7,6 +7,7 @@ class TrainingForm(ModelForm):
         model = Training
         fields = "__all__"
 
+
 class TopicForm(ModelForm):
     class Meta:
         model = Topic

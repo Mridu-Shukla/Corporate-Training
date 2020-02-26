@@ -26,6 +26,7 @@ from training.models import Training
 
 User = settings.AUTH_USER_MODEL
 
+
 @api_view(["GET"])
 def apiRoot(request, format=None):
     # Return the tasklist and trackerlist api
@@ -36,6 +37,7 @@ def apiRoot(request, format=None):
         "topics": reverse("faculty:api_topic", request=request, format=format),
     }
     return Response(api_info)
+
 
 class LoginView(View):
     template_name = "faculty/login.html"
@@ -73,6 +75,7 @@ class DashboardView(LoginRequiredMixin, TemplateView):
         context["training_list"] = Training.objects.all().order_by("-id")[:2]
         return context
 
+
 class AddFacultyView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Training
     form_class = FacultyForm
@@ -85,12 +88,14 @@ class AddFacultyView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
         context["school_list"] = School.objects.all()
         return context
 
+
 class AddSchoolView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = School
     form_class = SchoolForm
     template_name = "faculty/add_school.html"
     success_url = reverse_lazy("faculty:dashboard")
     success_message = "%(school_code)s was created successfully"
+
 
 class FacultyList(APIView):
     serializer = FacultySerializer
@@ -103,6 +108,7 @@ class FacultyList(APIView):
         task_serializer = self.serializer(tasks, many=True)
         # Return the JSON Representation
         return Response(task_serializer.data)
+
 
 class SchoolList(APIView):
     serializer = SchoolSerializer
