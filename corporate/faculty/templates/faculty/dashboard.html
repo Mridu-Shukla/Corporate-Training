@@ -1,22 +1,27 @@
 {% extends 'faculty/sidebar.html' %}
 {% load static %}
+{% load faculty_extras %}
 {% block addcss %}
     <link rel="stylesheet" href={% static 'faculty/css/dashboard.css' %}>
 {% endblock %}
 {% block content %}
+{% if messages %}
+    {% for message in messages %}
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+            <h5 class="mssg">{{message}}</h5>
+        {% else %}
+            <h5 class="mssg error">{{message}}</h5>
+        {% endif %}
+    {% endfor %}
+{% endif %}
 <div class="dashboard-content">
     <div class="trainings">
         <h1 class="dbheading">Ongoing Trainings</h1>
-        {% comment %} <div class="facultyinfo">
-            <img class="dblogo" src={% static 'faculty/poster.jpg'%}/>
-        </div>
-        <div class="facultyinfo">
-            <img class="dblogo" src={% static 'faculty/poster.jpg'%}/>
-        </div> {% endcomment %}
         {% for training in training_list %}
             <div class="facultyinfo">
                 <img class="dblogo profile" src={{training.training_image.url}} alt={{training.topic}}/>
-                <p class="middle">{{training.title }}</p>
+                <p class="middle">{{training.description|someWords }}</p>
+                <p class="card-head">{{training.title}}</p>
             </div>
         {% endfor %}
             <button class="loadmore" ype="button">View More</button>
@@ -26,7 +31,8 @@
         {% for faculty in faculty_list %}
             <div class="facultyinfo">
                 <img class="dblogo profile" src={{faculty.profile_photo.url}} alt={{faculty.user.username}}/>
-                <p class="middle">{{faculty.user.get_full_name }}</p>
+                <p class="middle">{{faculty.user.username|someWords }}</p>
+                <p class="card-head">{{faculty.user.get_full_name}}</p>
             </div>
         {% endfor %}
             <button class="loadmore" type="button">View More</button>

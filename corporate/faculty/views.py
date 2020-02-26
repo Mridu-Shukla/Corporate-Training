@@ -8,7 +8,6 @@ from django.contrib.auth import logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.base import RedirectView
 from django.views.generic import TemplateView
-from django.views.generic.edit import CreateView
 
 from .models import Faculty
 from .auth_forms import UserLoginForm
