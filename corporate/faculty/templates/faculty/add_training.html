@@ -8,9 +8,8 @@
     <div class="training">
         <form class="loginform" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            <h5 class="error">{{ form.non_field_errors|errorOnly }} </h5>
             <h2 class="formhead">Add Training Information</h2>
-            
+            <h5 class="error">{{ form.non_field_errors|errorOnly }} </h5>
             <label class="label" for="title">Title</label>
             <h5 class="error">{{ form.title.errors|errorOnly  }}</h5>
             <input required id="title" class="inp" type="text" name="title" placeholder="Enter the title of the workshop" value={{form.cleaned_data.title}}>

@@ -83,6 +83,9 @@ html,body{
 *:focus{
     outline: 4px solid rgb(190, 190, 190);
 }
+.inp:focus{
+    outline: none;
+}
 /* Change the white to any color ;) */
 input:-webkit-autofill,
 input:-webkit-autofill:hover, 

@@ -1,0 +1,25 @@
+{% extends 'faculty/sidebar.html' %}
+{% load static %}
+{% load faculty_extras %}
+{% block addcss %}
+    <link rel="stylesheet" href={% static 'faculty/css/add_training.css' %}>
+{% endblock %}
+{% block content %}
+    <div class="training">
+        <form class="loginform" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h2 class="formhead">Add Topic</h2>
+            <h5 class="error">{{ form.non_field_errors|errorOnly }} </h5>
+            <label class="label" for="title">Title</label>
+            <h5 class="error">{{ form.title.errors|errorOnly  }}</h5>
+            <input required id="title" class="inp" type="text" name="title" placeholder="Enter the Topic Title" value={{form.cleaned_data.title}}>
+            
+            <label class="label" for="short_description">Short Description</label>
+            <h5 class="error">{{ form.short_description.errors|errorOnly  }}</h5>
+            <input type="text" required id="short_description" class="inp" name="short_description" placeholder="Enter the short description" value={{form.cleaned_data.short_description}}>
+            
+            <input type="submit" value="Add Topic" class="form-submit">
+        
+        </form> 
+    </div>
+{% endblock %}

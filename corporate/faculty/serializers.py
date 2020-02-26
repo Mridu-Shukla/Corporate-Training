@@ -1,13 +1,13 @@
-from django.forms import ModelForm
+from rest_framework import serializers
 from .models import Faculty, School
 
-
-class FacultyForm(ModelForm):
+class FacultySerializer(serializers.ModelSerializer):
     class Meta:
         model = Faculty
         fields = "__all__"
+        depth = 1
 
-class SchoolForm(ModelForm):
+class SchoolSerializer(serializers.ModelSerializer):
     class Meta:
         model = School
         fields = "__all__"

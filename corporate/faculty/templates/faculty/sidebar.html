@@ -16,12 +16,15 @@
             <a href={% url 'faculty:dashboard'%} class="active">Vellore Institute of Technology</a>
             <div id="myLinks">
                <a href={% url 'faculty:dashboard'%}>Dashboard</a>
+               <a href={% url 'faculty:logout'%}>Logout</a>
                 <a href="">Ongoing Trainings</a>
                 <a href="">Current Faculties</a>
-                <a href="">Add Training</a>
-                <a href="">Add Faculty</a>
-                <a href="">Add Topics</a>
-                <a href={% url 'faculty:logout'%}>Logout</a>
+                <a href={% url 'faculty:add_training'%}>Add Training</a>
+                <a href={% url 'faculty:add_faculty'%}>Add Faculty</a>
+                <a href={% url 'faculty:add_topic'%}>Add Topics</a>
+                <a href={% url 'faculty:add_school'%}>Add School</a>
+                <a href="">Modify Details</a>
+                
             </div>
             <a href="javascript:void(0);" class="icon" onclick="myFunction()">
                 <i class="fa fa-bars"></i>
@@ -31,13 +34,14 @@
             <ul class="sidebarlink">
                 <a href={% url 'faculty:dashboard'%}><img class="logo" src={% static 'faculty/vit_white.png'%} alt="VIT"/></a>
                 <a href={% url 'faculty:dashboard'%}><li class="links">Dashboard</li></a>
+                <a href={% url 'faculty:logout'%}><li class="links">Logout</li></a>
                 <a href=""><li class="links">Ongoing Trainings</li></a>
                 <a href=""><li class="links">Current Faculties</li></a>
                 <a href={% url 'faculty:add_training'%}><li class="links">Add Training</li></a>
-                <a href=""><li class="links">Add Faculty</li></a>
-                <a href=""><li class="links">Add Topics</li></a>
+                <a href={% url 'faculty:add_faculty'%}><li class="links">Add Faculty</li></a>
+                <a href={% url 'faculty:add_topic'%}><li class="links">Add Topics</li></a>
+                <a href={% url 'faculty:add_school'%}><li class="links">Add School</li></a>
                 <a href=""><li class="links">Modify Details</li></a>
-                <a href={% url 'faculty:logout'%}><li class="links">Logout</li></a>
             </ul>
         </div>
         <div class="content">

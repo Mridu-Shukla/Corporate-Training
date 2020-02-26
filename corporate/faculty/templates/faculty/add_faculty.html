@@ -1,0 +1,54 @@
+{% extends 'faculty/sidebar.html' %}
+{% load static %}
+{% load faculty_extras %}
+{% block addcss %}
+    <link rel="stylesheet" href={% static 'faculty/css/add_training.css' %}>
+{% endblock %}
+{% block content %}
+    <div class="training">
+        <form class="loginform" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h2 class="formhead">Add Faculty Information</h2>
+            <h5 class="error">{{ form.non_field_errors|errorOnly }} </h5>
+            <label class="label" for="username">Username</label>
+            <h5 class="error">{{ form.username.errors|errorOnly }}</h5>
+            <input id="username" type="text" class="inp" name="username" placeholder="Enter the username" required value={{form.cleaned_data.username}}>
+            
+            <label class="label" for="first_name">First Name</label>
+            <h5 class="error">{{ form.first_name.errors|errorOnly  }}</h5>
+            <input id="first_name" type="text" class="inp" name="first_name" placeholder="Enter the first name" required value={{form.cleaned_data.first_name}}>
+
+            <label class="label" for="last_name">Last Name</label>
+            <h5 class="error">{{ form.last_name.errors|errorOnly  }}</h5>
+            <input id="last_name" type="text" class="inp" name="last_name" placeholder="Enter the last name" required value={{form.cleaned_data.last_name}}>
+
+            <label class="label" for="email">Email</label>
+            <h5 class="error">{{ form.email.errors|errorOnly }}</h5>
+            <input id="email" type="text" class="inp" name="email" placeholder="Enter the email address" required value={{form.cleaned_data.email}}>
+            
+            <label class="label" for="bio">Enter a bio</label>
+            <h5 class="error">{{ form.bio.errors|errorOnly  }}</h5>
+            <input type="text" required id="bio" class="inp" name="bio" placeholder="Bio of employee" value={{form.cleaned_data.bio}}>
+            
+            <label for="school" class="label">Select a school:</label>
+            <h5 class="error">{{ form.school.errors|errorOnly  }}</h5>
+            <select name="toschoolpic" required class="inp" id="school">
+                <option value="">--------</option>
+                {% for school in school_list %}
+                    <option value={{forloop.counter}}>{{school.school_code}}</option>
+                {% endfor %}
+            </select>
+            
+            <label class="label" for="phone">Phone Number</label>
+            <h5 class="error">{{ form.phone.errors|errorOnly}}</h5>
+            <input type="number" required id="phone" class="inp" name="phone" placeholder="Phone number" value={{form.cleaned_data.phone}}>
+            
+            <label class="label" for="profile_photo">Profile Photo</label>
+            <h5 class="error">{{ form.profile_photo.errors|errorOnly  }}</h5>
+            <input accept="image/*" type="file" required id="profile_photo" class="inp" name="profile_photo">
+            
+            <input type="submit" value="Add Faculty" class="form-submit">
+        
+        </form> 
+    </div>
+{% endblock %}
