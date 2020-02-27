@@ -1,0 +1,34 @@
+.banner{
+	background-image: -moz-linear-gradient(0deg, #5dbce6 0%,  #2945d3 100%);
+    background-image: -webkit-linear-gradient(0deg, #5dbce6 0%,  #2945d3 100%);
+    background-image: -ms-linear-gradient(0deg, #5dbce6 0%,  #2945d3 100%);
+	text-align: center;
+    color: #fff;
+   height: 780px;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+
+#prof_con{
+    padding: 10px;
+    border-radius: 10px;
+    background-color: white;
+    position: relative;
+    top: 270px;
+}
+
+.row{
+    margin-top: 60px;
+}
+
+.info{
+    text-align: left;
+    padding: 10px;
+    padding-left: 80px;
+}

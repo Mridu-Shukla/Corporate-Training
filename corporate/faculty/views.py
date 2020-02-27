@@ -11,6 +11,7 @@ from django.views.generic import TemplateView
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib.auth.models import User
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -18,13 +19,14 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.reverse import reverse
 
-from .models import Faculty, School
+from .models import Faculty, School,CustomUser
 from .auth_forms import UserLoginForm
 from .forms import FacultyForm, SchoolForm
 from .serializers import FacultySerializer, SchoolSerializer
 from training.models import Training
 
 User = settings.AUTH_USER_MODEL
+
 
 
 @api_view(["GET"])
@@ -121,3 +123,14 @@ class SchoolList(APIView):
         task_serializer = self.serializer(tasks, many=True)
         # Return the JSON Representation
         return Response(task_serializer.data)
+
+
+def index(request):
+    faculties = Faculty.objects.all()
+    school = School.objects.all()
+    return render(request, 'faculty/index.html',{'faculties': faculties, 'school':school})
+
+def profile(request, username):
+    faculty = Faculty.objects.get(pk=username)
+    return render(request, 'faculty/profile.html',{'faculty':faculty})
+
