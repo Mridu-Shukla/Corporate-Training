@@ -24,5 +24,7 @@ urlpatterns = [
     path("adm/", include("faculty.urls")),
     path("training", include("training.urls")),
     path("", views.index, name="home"),
+    path("faculty/", views.getFaculty, name="faculty"),
+    # path("faculty/school", views.getFacultyBySchool, name="school_fac"),
     path("faculty/<str:username>", views.profile, name="profile"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

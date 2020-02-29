@@ -1,12 +1,7 @@
 {% extends 'faculty/base.html' %}
 {% load static %}
-{% block addcss %}
-<link rel="stylesheet" href={% static 'faculty/css/profile.css'%}>
-{% endblock %}
 {% block content %}
-<div class="banner">
-    <div class="container">
-    <div id="prof_con">      
+<div class="item">
         <div class="row">
            <div class="col-3">
         <img src="{{faculty.profile_photo.url}}"  alt="profile_pic" height="200px" width="200px">
@@ -21,26 +16,12 @@
     
     </div>  
     <div class="col-lg-3" style="float: right;">
-        <a role="button" class="btn btn-outline-primary" href="{% url 'profile'  faculty.id %}" >More Info</a>
+        <!-- <a role="button" class="btn btn-outline-primary" href="{% url 'profile'  faculty.id %}" >More Info</a> -->
+        <a role="button" class="btn btn-outline-success" href="{% url 'faculty' %}" >Back</a>
     </div>
     <br>
     <br>
         
     </div>
     </div>
-</div>
-</div>
-
-
-<footer class="footer-area section-gap">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12  col-md-6 col-sm-6">
-                <div class="single-footer-widget">                                                                
-                    <p class="footer-text">Copyright &copy; <script>document.write(new Date().getFullYear());</script> VIT Chennai. All rights reserved.</p>
-                </div>
-            </div>
-           
-    </div>
-</footer>
 {% endblock %}

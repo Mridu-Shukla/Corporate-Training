@@ -1,0 +1,42 @@
+{% extends 'faculty/base.html' %}
+{% load static %}
+{% block content %}
+<div class="item">
+    <form action="" method="GET">
+        {% csrf_token %}
+    <select class="custom-select col-4 custom-select-sm" name="choice">
+        <option selected>Choose the topic</option>
+        {% for topic in topics %}
+        <option value="{{topic.id}}" name='school'>{{ topic.title }}</option>
+        {% endfor %}
+      </select>
+      <button type="submit" class="btn btn-primary">View</button>
+      </form>
+</div>
+<div class="item">
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">S.No</th>
+            <th scope="col">Title</th>
+            <th scope="col">Topic</th>
+            <th scope="col">Faculty</th>
+            <th scope="col">Poster</th>
+            <th scope="col">Detail</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for t in training %}
+          <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{t.title}}</td>
+            <td>{{t.topic}}</td>
+            <td><a href="{% url 'profile'  t.faculty.id %}">{{t.faculty.user.first_name}} {{t.faculty.user.last_name}}</a></td>
+            <td><img src="{{t.training_image.url}}" alt="poster" height="80px" width="80px"></td>
+            <td><a role="button" class="btn btn-success" href="{% url 'training:detail'  t.id %}" >View</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -124,13 +124,21 @@ class SchoolList(APIView):
         # Return the JSON Representation
         return Response(task_serializer.data)
 
-
 def index(request):
-    faculties = Faculty.objects.all()
+    return render(request, 'faculty/index.html',{})
+
+def getFaculty(request):
+    if(request.method == 'GET'):
+        sch = request.GET.get('choice')
+        if(sch == 'All Schools' or  sch is None):
+            faculties = Faculty.objects.all()
+        else:          
+            faculties = Faculty.objects.filter(school_id=sch)
     school = School.objects.all()
-    return render(request, 'faculty/index.html',{'faculties': faculties, 'school':school})
+    return render(request, 'faculty/faculty.html',{'faculties': faculties, 'school':school})
 
 def profile(request, username):
     faculty = Faculty.objects.get(pk=username)
     return render(request, 'faculty/profile.html',{'faculty':faculty})
+
 

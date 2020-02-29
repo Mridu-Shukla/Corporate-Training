@@ -1,3 +1,4 @@
+from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
@@ -61,3 +62,18 @@ class TrainingList(APIView):
         task_serializer = self.serializer(tasks, many=True)
         # Return the JSON Representation
         return Response(task_serializer.data)
+
+def getTraining(request):
+    if(request.method == 'GET'):
+        topic = request.GET.get('choice')
+        if(topic == 'Choose the topic' or  topic is None):
+            training = Training.objects.all()
+        else:          
+            training = Training.objects.filter(topic_id=topic)
+    
+    topics = Topic.objects.all()    
+    return render(request,'training/training.html',{'training':training, 'topics':topics})
+
+def getTrainingDetail(request,tid):
+    training = Training.objects.get(pk=tid)
+    return render(request, 'training/training_detail.html',{'training':training})

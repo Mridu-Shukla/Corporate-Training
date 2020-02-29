@@ -1,0 +1,79 @@
+{% extends 'faculty/base.html' %}
+{% load static %}
+{% block content %}
+<div class="item">
+    <form action="" method="GET">
+        {% csrf_token %}
+    <select class="custom-select col-4 custom-select-sm" name="choice">
+        <option selected>All Schools</option>
+        {% for s in school %}
+        <option value="{{s.id}}" name='school'>{{ s.school_code }}</option>
+        {% endfor %}
+      </select>
+      <button type="submit" class="btn btn-primary">View</button>
+      </form>
+</div>
+<div class="item">
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">S.No</th>
+            <th scope="col">Profile Photo</th>
+            <th scope="col">Faculty Name</th>
+            <th scope="col">School</th>
+            <th scope="col">Email-Id</th>
+            <th scope="col">More Detail</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for faculty in faculties %}
+          <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td><img src="{{faculty.profile_photo.url}}" alt="profile_pic" height="80px" width="80px"></td>
+            <td>{{faculty.user.first_name}} {{faculty.user.last_name}}</td>
+            <td>{{faculty.school}}</td>
+            <td>{{faculty.user.email}}</td>
+            <td><a role="button" class="btn btn-success" href="{% url 'profile'  faculty.id %}" >View</a></td>
+          </tr>
+          {% endfor %}
+          <!-- <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Larry</td>
+            <td>the Bird</td>
+            <td>@twitter</td>
+          </tr> -->
+        </tbody>
+      </table>
+    <!-- {% for s in school %}
+                <h4 style="padding: 10px;">{{ s.school_name }} ({{ s.school_code }})</h4>
+                <div class="flex-container">
+                    {% for faculty in faculties %}
+                    {% if faculty.school == s %}
+                    
+                <div class="card shadow bg-warning" style="width: 16rem;">
+                    <div class="pic" style="padding: 10px;">
+                    <img src="{{faculty.profile_photo.url}}" class="card-img-top" alt="profile_pic" height="200px" style="border-radius: 50%;">
+                    </div>
+                    <div class="card-body">
+                        <p class="name">{{faculty.user.first_name}} {{faculty.user.last_name}} <br> <span style="color: brown;">{{faculty.school}}</span></p>
+                        <a role="button" class="btn btn-outline-secondary" href="{% url 'profile'  faculty.id %}" >View Profile</a>
+                    </div>
+                  </div>
+                
+                  {% endif %}
+                  {% endfor %}
+                </div>
+                  <br>
+                  <hr>
+                  {% endfor %} -->
+  </div>
+
+
+
+{% endblock %}

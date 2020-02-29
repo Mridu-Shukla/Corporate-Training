@@ -1,69 +1,7 @@
 {% extends 'faculty/base.html' %}
 {% load static %}
 {% block content %}
-<div class="banner">
-    <div class="container">
-    <div class="banner-text">
-    <div class="banner-heading">
-        Govt. of India recognizes
-        VIT as an
-        Institution of Eminence(IoE)
-        MHRD, Govt. of India has chosen top 10 public institutions and top 10 private instituitons as IoEs to become the world's best.
-        VIT thanks Govt. of India for its faith in us.
-    </div>
-    
-    </div>
-    </div>
+<div class="item">
+    <center><h1>Welcome to the VIT Corporate Training!</h1></center>
 </div>
-</div>
-<section id="fac">
-    <div class="container">
-        <h3 class="h1" style="text-align: center;">Faculty</h3>
-            <!-- <div id="sel"> -->
-            
-            
-        <div id="list">
-            
-                {% for s in school %}
-                <h4 style="padding: 10px;">{{ s.school_name }} ({{ s.school_code }})</h4>
-                <div class="flex-container">
-                {% for faculty in faculties %}
-                    {% if faculty.school == s %}
-                    
-                <div class="card shadow bg-warning" style="width: 16rem;">
-                    <div class="pic" style="padding: 10px;">
-                    <img src="{{faculty.profile_photo.url}}" class="card-img-top" alt="profile_pic" height="200px" style="border-radius: 50%;">
-                    </div>
-                    <div class="card-body">
-                        <p class="name">{{faculty.user.first_name}} {{faculty.user.last_name}} <br> <span style="color: brown;">{{faculty.school}}</span></p>
-                        <a role="button" class="btn btn-outline-secondary" href="{% url 'profile'  faculty.id %}" >View Profile</a>
-                    </div>
-                  </div>
-                
-                  {% endif %}
-                  {% endfor %}
-                </div>
-                  <br>
-                  <hr>
-                  {% endfor %}
-              
-            
-        </div>
-    </div>
-</section>
-
-<footer class="footer-area section-gap">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12  col-md-6 col-sm-6">
-                <div class="single-footer-widget">                                                                
-                    <p class="footer-text">Copyright &copy; <script>document.write(new Date().getFullYear());</script> VIT Chennai. All rights reserved.</p>
-                </div>
-            </div>
-           
-    </div>
-</footer>
-
-
-
 {% endblock %}
